@@ -38,7 +38,6 @@ namespace Aviationstack.Standard.Controllers
         /// <summary>
         /// Retrieve real-time and historical flight data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return (max 1000).</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="flightIata">Optional parameter: IATA code of the flight.</param>
@@ -54,7 +53,6 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="date">Optional parameter: Date in YYYY-MM-DD format.</param>
         /// <returns>Returns the Models.FlightResponse response from the API call.</returns>
         public Models.FlightResponse GetFlights(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string flightIata = null,
@@ -68,12 +66,11 @@ namespace Aviationstack.Standard.Controllers
                 string arrIcao = null,
                 Models.FlightStatus2Enum? flightStatus = null,
                 DateTime? date = null)
-            => CoreHelper.RunTask(GetFlightsAsync(accessKey, limit, offset, flightIata, flightIcao, airlineIata, airlineIcao, flightNumber, depIata, depIcao, arrIata, arrIcao, flightStatus, date));
+            => CoreHelper.RunTask(GetFlightsAsync(limit, offset, flightIata, flightIcao, airlineIata, airlineIcao, flightNumber, depIata, depIcao, arrIata, arrIcao, flightStatus, date));
 
         /// <summary>
         /// Retrieve real-time and historical flight data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return (max 1000).</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="flightIata">Optional parameter: IATA code of the flight.</param>
@@ -90,7 +87,6 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.FlightResponse response from the API call.</returns>
         public async Task<Models.FlightResponse> GetFlightsAsync(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string flightIata = null,
@@ -110,7 +106,6 @@ namespace Aviationstack.Standard.Controllers
                   .Setup(HttpMethod.Get, "/v1/flights")
                   .WithAuth("ApiKeyAuth")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("access_key", accessKey))
                       .Query(_query => _query.Setup("limit", limit ?? 100))
                       .Query(_query => _query.Setup("offset", offset ?? 0))
                       .Query(_query => _query.Setup("flight_iata", flightIata))

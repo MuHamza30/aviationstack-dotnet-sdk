@@ -15,6 +15,8 @@ The API client can be initialized as follows:
 using Aviationstack.Standard;
 using Aviationstack.Standard.Authentication;
 
+namespace ConsoleApp;
+
 AviationstackClient client = new AviationstackClient.Builder()
     .CustomQueryAuthenticationCredentials(
         new CustomQueryAuthenticationModel.Builder(

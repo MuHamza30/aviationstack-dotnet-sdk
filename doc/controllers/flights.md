@@ -17,7 +17,6 @@ Retrieve real-time and historical flight data
 
 ```csharp
 GetFlightsAsync(
-    string accessKey,
     int? limit = 100,
     int? offset = 0,
     string flightIata = null,
@@ -37,7 +36,6 @@ GetFlightsAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accessKey` | `string` | Query, Required | Your AviationStack API access key |
 | `limit` | `int?` | Query, Optional | Number of results to return (max 1000)<br><br>**Default**: `100` |
 | `offset` | `int?` | Query, Optional | Number of results to skip<br><br>**Default**: `0` |
 | `flightIata` | `string` | Query, Optional | IATA code of the flight |
@@ -59,13 +57,11 @@ GetFlightsAsync(
 ## Example Usage
 
 ```csharp
-string accessKey = "access_key8";
 int? limit = 100;
 int? offset = 0;
 try
 {
     FlightResponse result = await flightsController.GetFlightsAsync(
-        accessKey,
         limit,
         offset
     );

@@ -38,7 +38,6 @@ namespace Aviationstack.Standard.Controllers
         /// <summary>
         /// Retrieve airline data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="iataCode">Optional parameter: IATA code of the airline.</param>
@@ -46,18 +45,16 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="countryCode">Optional parameter: Country code.</param>
         /// <returns>Returns the Models.AirlineResponse response from the API call.</returns>
         public Models.AirlineResponse GetAirlines(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string iataCode = null,
                 string icaoCode = null,
                 string countryCode = null)
-            => CoreHelper.RunTask(GetAirlinesAsync(accessKey, limit, offset, iataCode, icaoCode, countryCode));
+            => CoreHelper.RunTask(GetAirlinesAsync(limit, offset, iataCode, icaoCode, countryCode));
 
         /// <summary>
         /// Retrieve airline data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="iataCode">Optional parameter: IATA code of the airline.</param>
@@ -66,7 +63,6 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.AirlineResponse response from the API call.</returns>
         public async Task<Models.AirlineResponse> GetAirlinesAsync(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string iataCode = null,
@@ -78,7 +74,6 @@ namespace Aviationstack.Standard.Controllers
                   .Setup(HttpMethod.Get, "/v1/airlines")
                   .WithAuth("ApiKeyAuth")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("access_key", accessKey))
                       .Query(_query => _query.Setup("limit", limit ?? 100))
                       .Query(_query => _query.Setup("offset", offset ?? 0))
                       .Query(_query => _query.Setup("iata_code", iataCode))

@@ -17,7 +17,6 @@ Retrieve city data
 
 ```csharp
 GetCitiesAsync(
-    string accessKey,
     int? limit = 100,
     int? offset = 0,
     string countryCode = null,
@@ -28,7 +27,6 @@ GetCitiesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accessKey` | `string` | Query, Required | Your AviationStack API access key |
 | `limit` | `int?` | Query, Optional | Number of results to return<br><br>**Default**: `100` |
 | `offset` | `int?` | Query, Optional | Number of results to skip<br><br>**Default**: `0` |
 | `countryCode` | `string` | Query, Optional | Country code |
@@ -41,13 +39,11 @@ GetCitiesAsync(
 ## Example Usage
 
 ```csharp
-string accessKey = "access_key8";
 int? limit = 100;
 int? offset = 0;
 try
 {
     CityResponse result = await citiesController.GetCitiesAsync(
-        accessKey,
         limit,
         offset
     );

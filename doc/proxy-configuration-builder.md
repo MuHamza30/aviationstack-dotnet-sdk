@@ -21,14 +21,16 @@ To configure the SDK to use a proxy server, initialize the proxy configuration d
 using Aviationstack.Standard;
 using Aviationstack.Standard.Http.Client.Proxy;
 
-    var client = new AviationstackClient.Builder()
-    .HttpClientConfig(config => config
-        .Proxy(new ProxyConfigurationBuilder("http://localhost")
-                .Port(8080)
-                .Tunnel(false)
-                .Auth("user", "pass")
-        )
+namespace ConsoleApp;
+
+var client = new AviationstackClient.Builder()
+.HttpClientConfig(config => config
+    .Proxy(new ProxyConfigurationBuilder("http://localhost")
+            .Port(8080)
+            .Tunnel(false)
+            .Auth("user", "pass")
     )
-    .Build();
+)
+.Build();
 ```
 

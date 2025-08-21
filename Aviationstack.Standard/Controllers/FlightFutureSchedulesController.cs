@@ -38,7 +38,6 @@ namespace Aviationstack.Standard.Controllers
         /// <summary>
         /// Retrieve future flight schedule information for a specific airport and date.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="iataCode">Required parameter: [Required] The IATA code of the airport you'd like to request data from. Example: JFK,DXB..</param>
         /// <param name="type">Required parameter: [Required] Airport schedule type. Available values: departure or arrival..</param>
         /// <param name="date">Required parameter: [Required] Filter your results by providing a flight date in the format YYYY-MM-DD..</param>
@@ -46,18 +45,16 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <returns>Returns the Models.FlightScheduleResponse response from the API call.</returns>
         public Models.FlightScheduleResponse GetFutureFlightSchedules(
-                string accessKey,
                 string iataCode,
                 Models.TypeEnum type,
                 DateTime date,
                 int? limit = 100,
                 int? offset = 0)
-            => CoreHelper.RunTask(GetFutureFlightSchedulesAsync(accessKey, iataCode, type, date, limit, offset));
+            => CoreHelper.RunTask(GetFutureFlightSchedulesAsync(iataCode, type, date, limit, offset));
 
         /// <summary>
         /// Retrieve future flight schedule information for a specific airport and date.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="iataCode">Required parameter: [Required] The IATA code of the airport you'd like to request data from. Example: JFK,DXB..</param>
         /// <param name="type">Required parameter: [Required] Airport schedule type. Available values: departure or arrival..</param>
         /// <param name="date">Required parameter: [Required] Filter your results by providing a flight date in the format YYYY-MM-DD..</param>
@@ -66,7 +63,6 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.FlightScheduleResponse response from the API call.</returns>
         public async Task<Models.FlightScheduleResponse> GetFutureFlightSchedulesAsync(
-                string accessKey,
                 string iataCode,
                 Models.TypeEnum type,
                 DateTime date,
@@ -78,7 +74,6 @@ namespace Aviationstack.Standard.Controllers
                   .Setup(HttpMethod.Get, "/v1/flights/{iata_code}/{type}/{date}")
                   .WithAuth("ApiKeyAuth")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("access_key", accessKey))
                       .Template(_template => _template.Setup("iata_code", iataCode))
                       .Template(_template => _template.Setup("type", ApiHelper.JsonSerialize(type).Trim('\"')))
                       .Template(_template => _template.Setup("date", date.ToString("yyyy'-'MM'-'dd")))

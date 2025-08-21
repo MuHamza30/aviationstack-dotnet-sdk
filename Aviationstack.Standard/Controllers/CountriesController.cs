@@ -38,24 +38,21 @@ namespace Aviationstack.Standard.Controllers
         /// <summary>
         /// Retrieve country data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="countryCode">Optional parameter: Country code.</param>
         /// <param name="countryName">Optional parameter: Country name.</param>
         /// <returns>Returns the Models.CountryResponse response from the API call.</returns>
         public Models.CountryResponse GetCountries(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string countryCode = null,
                 string countryName = null)
-            => CoreHelper.RunTask(GetCountriesAsync(accessKey, limit, offset, countryCode, countryName));
+            => CoreHelper.RunTask(GetCountriesAsync(limit, offset, countryCode, countryName));
 
         /// <summary>
         /// Retrieve country data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="countryCode">Optional parameter: Country code.</param>
@@ -63,7 +60,6 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.CountryResponse response from the API call.</returns>
         public async Task<Models.CountryResponse> GetCountriesAsync(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string countryCode = null,
@@ -74,7 +70,6 @@ namespace Aviationstack.Standard.Controllers
                   .Setup(HttpMethod.Get, "/v1/countries")
                   .WithAuth("ApiKeyAuth")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("access_key", accessKey))
                       .Query(_query => _query.Setup("limit", limit ?? 100))
                       .Query(_query => _query.Setup("offset", offset ?? 0))
                       .Query(_query => _query.Setup("country_code", countryCode))

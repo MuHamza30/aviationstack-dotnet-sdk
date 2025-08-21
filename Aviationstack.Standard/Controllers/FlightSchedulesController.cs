@@ -38,24 +38,21 @@ namespace Aviationstack.Standard.Controllers
         /// <summary>
         /// Retrieve flight schedule information for a specific airport.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="iataCode">Required parameter: [Required] The IATA code of the airport you'd like to request data from. Example: JFK,DXB..</param>
         /// <param name="type">Required parameter: [Required] Airport schedule type. Available values: departure or arrival..</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <returns>Returns the Models.FlightScheduleResponse response from the API call.</returns>
         public Models.FlightScheduleResponse GetFlightSchedules(
-                string accessKey,
                 string iataCode,
                 Models.TypeEnum type,
                 int? limit = 100,
                 int? offset = 0)
-            => CoreHelper.RunTask(GetFlightSchedulesAsync(accessKey, iataCode, type, limit, offset));
+            => CoreHelper.RunTask(GetFlightSchedulesAsync(iataCode, type, limit, offset));
 
         /// <summary>
         /// Retrieve flight schedule information for a specific airport.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="iataCode">Required parameter: [Required] The IATA code of the airport you'd like to request data from. Example: JFK,DXB..</param>
         /// <param name="type">Required parameter: [Required] Airport schedule type. Available values: departure or arrival..</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
@@ -63,7 +60,6 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.FlightScheduleResponse response from the API call.</returns>
         public async Task<Models.FlightScheduleResponse> GetFlightSchedulesAsync(
-                string accessKey,
                 string iataCode,
                 Models.TypeEnum type,
                 int? limit = 100,
@@ -74,7 +70,6 @@ namespace Aviationstack.Standard.Controllers
                   .Setup(HttpMethod.Get, "/v1/flights/{iata_code}/{type}")
                   .WithAuth("ApiKeyAuth")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("access_key", accessKey))
                       .Template(_template => _template.Setup("iata_code", iataCode))
                       .Template(_template => _template.Setup("type", ApiHelper.JsonSerialize(type).Trim('\"')))
                       .Query(_query => _query.Setup("limit", limit ?? 100))

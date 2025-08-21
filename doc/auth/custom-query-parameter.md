@@ -25,6 +25,8 @@ You must provide credentials in the client as shown in the following code snippe
 using Aviationstack.Standard;
 using Aviationstack.Standard.Authentication;
 
+namespace ConsoleApp;
+
 AviationstackClient client = new AviationstackClient.Builder()
     .CustomQueryAuthenticationCredentials(
         new CustomQueryAuthenticationModel.Builder(

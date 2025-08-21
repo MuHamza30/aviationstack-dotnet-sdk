@@ -15,7 +15,6 @@ Retrieve flight schedule information for a specific airport
 
 ```csharp
 GetFlightSchedulesAsync(
-    string accessKey,
     string iataCode,
     Models.TypeEnum type,
     int? limit = 100,
@@ -26,7 +25,6 @@ GetFlightSchedulesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accessKey` | `string` | Query, Required | Your AviationStack API access key |
 | `iataCode` | `string` | Template, Required | [Required] The IATA code of the airport you'd like to request data from. Example: JFK,DXB. |
 | `type` | [`TypeEnum`](../../doc/models/type-enum.md) | Template, Required | [Required] Airport schedule type. Available values: departure or arrival. |
 | `limit` | `int?` | Query, Optional | Number of results to return<br><br>**Default**: `100` |
@@ -39,7 +37,6 @@ GetFlightSchedulesAsync(
 ## Example Usage
 
 ```csharp
-string accessKey = "access_key8";
 string iataCode = "iata_code4";
 TypeEnum type = TypeEnum.Departure;
 int? limit = 100;
@@ -47,7 +44,6 @@ int? offset = 0;
 try
 {
     FlightScheduleResponse result = await flightSchedulesController.GetFlightSchedulesAsync(
-        accessKey,
         iataCode,
         type,
         limit,

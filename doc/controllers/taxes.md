@@ -17,7 +17,6 @@ Retrieve aviation tax data
 
 ```csharp
 GetTaxesAsync(
-    string accessKey,
     int? limit = 100,
     int? offset = 0,
     string iataCode = null)
@@ -27,7 +26,6 @@ GetTaxesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accessKey` | `string` | Query, Required | Your AviationStack API access key |
 | `limit` | `int?` | Query, Optional | Number of results to return<br><br>**Default**: `100` |
 | `offset` | `int?` | Query, Optional | Number of results to skip<br><br>**Default**: `0` |
 | `iataCode` | `string` | Query, Optional | IATA code |
@@ -39,13 +37,11 @@ GetTaxesAsync(
 ## Example Usage
 
 ```csharp
-string accessKey = "access_key8";
 int? limit = 100;
 int? offset = 0;
 try
 {
     TaxResponse result = await taxesController.GetTaxesAsync(
-        accessKey,
         limit,
         offset
     );

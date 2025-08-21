@@ -38,24 +38,21 @@ namespace Aviationstack.Standard.Controllers
         /// <summary>
         /// Retrieve city data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="countryCode">Optional parameter: Country code.</param>
         /// <param name="cityName">Optional parameter: City name.</param>
         /// <returns>Returns the Models.CityResponse response from the API call.</returns>
         public Models.CityResponse GetCities(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string countryCode = null,
                 string cityName = null)
-            => CoreHelper.RunTask(GetCitiesAsync(accessKey, limit, offset, countryCode, cityName));
+            => CoreHelper.RunTask(GetCitiesAsync(limit, offset, countryCode, cityName));
 
         /// <summary>
         /// Retrieve city data.
         /// </summary>
-        /// <param name="accessKey">Required parameter: Your AviationStack API access key.</param>
         /// <param name="limit">Optional parameter: Number of results to return.</param>
         /// <param name="offset">Optional parameter: Number of results to skip.</param>
         /// <param name="countryCode">Optional parameter: Country code.</param>
@@ -63,7 +60,6 @@ namespace Aviationstack.Standard.Controllers
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the Models.CityResponse response from the API call.</returns>
         public async Task<Models.CityResponse> GetCitiesAsync(
-                string accessKey,
                 int? limit = 100,
                 int? offset = 0,
                 string countryCode = null,
@@ -74,7 +70,6 @@ namespace Aviationstack.Standard.Controllers
                   .Setup(HttpMethod.Get, "/v1/cities")
                   .WithAuth("ApiKeyAuth")
                   .Parameters(_parameters => _parameters
-                      .Query(_query => _query.Setup("access_key", accessKey))
                       .Query(_query => _query.Setup("limit", limit ?? 100))
                       .Query(_query => _query.Setup("offset", offset ?? 0))
                       .Query(_query => _query.Setup("country_code", countryCode))

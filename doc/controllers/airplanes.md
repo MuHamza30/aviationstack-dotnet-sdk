@@ -17,7 +17,6 @@ Retrieve airplane data
 
 ```csharp
 GetAirplanesAsync(
-    string accessKey,
     int? limit = 100,
     int? offset = 0,
     string iataTypeCode = null,
@@ -28,7 +27,6 @@ GetAirplanesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accessKey` | `string` | Query, Required | Your AviationStack API access key |
 | `limit` | `int?` | Query, Optional | Number of results to return<br><br>**Default**: `100` |
 | `offset` | `int?` | Query, Optional | Number of results to skip<br><br>**Default**: `0` |
 | `iataTypeCode` | `string` | Query, Optional | IATA type code |
@@ -41,13 +39,11 @@ GetAirplanesAsync(
 ## Example Usage
 
 ```csharp
-string accessKey = "access_key8";
 int? limit = 100;
 int? offset = 0;
 try
 {
     AirplaneResponse result = await airplanesController.GetAirplanesAsync(
-        accessKey,
         limit,
         offset
     );

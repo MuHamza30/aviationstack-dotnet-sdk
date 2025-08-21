@@ -15,7 +15,6 @@ Retrieve future flight schedule information for a specific airport and date
 
 ```csharp
 GetFutureFlightSchedulesAsync(
-    string accessKey,
     string iataCode,
     Models.TypeEnum type,
     DateTime date,
@@ -27,7 +26,6 @@ GetFutureFlightSchedulesAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accessKey` | `string` | Query, Required | Your AviationStack API access key |
 | `iataCode` | `string` | Template, Required | [Required] The IATA code of the airport you'd like to request data from. Example: JFK,DXB. |
 | `type` | [`TypeEnum`](../../doc/models/type-enum.md) | Template, Required | [Required] Airport schedule type. Available values: departure or arrival. |
 | `date` | `DateTime` | Template, Required | [Required] Filter your results by providing a flight date in the format YYYY-MM-DD. |
@@ -41,7 +39,6 @@ GetFutureFlightSchedulesAsync(
 ## Example Usage
 
 ```csharp
-string accessKey = "access_key8";
 string iataCode = "iata_code4";
 TypeEnum type = TypeEnum.Departure;
 DateTime date = DateTime.Parse("2016-03-13");
@@ -50,7 +47,6 @@ int? offset = 0;
 try
 {
     FlightScheduleResponse result = await flightFutureSchedulesController.GetFutureFlightSchedulesAsync(
-        accessKey,
         iataCode,
         type,
         date,

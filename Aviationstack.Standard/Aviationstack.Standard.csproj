@@ -8,21 +8,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Aviation-stack-Api</AssemblyName>
+    <AssemblyName>AviationStack</AssemblyName>
     <Version>1.0.0.0</Version>
-    <Authors>Muhammad Hamza Shahzad</Authors>
+    <Authors>Hamza Shahzad</Authors>
     <Owners>AviationStack Support</Owners>
     <Product>Aviationstack.Standard</Product>
     <Copyright>Copyright ©  2019</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
-    <Description>AviationStack is an API that provides real-time and historical flight data, including flight status, airline routes, and airport details.</Description>
+    <Description>The Aviationstack API provides real-time and historical flight data, including flight status, airline routes, airports, and aircraft information, for aviation tracking and analysis.</Description>
     <LangVersion>7.3</LangVersion>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <PackageId>Aviation-stack-Api</PackageId>
-    <RepositoryUrl>https://github.com/MuHamza30/aviationstack-dotnet-sdk.git</RepositoryUrl>
+    <PackageId>AviationStack</PackageId>
+    <RepositoryUrl>https://github.com/MuHamza30/aviationStack-dotnet-sdk.git</RepositoryUrl>
     <PackRepositoryTypeageId>git</PackRepositoryTypeageId>
-    <PackageProjectUrl>https://docs.apimatic.io/</PackageProjectUrl>
+    <PackageProjectUrl>https://www.apimatic.io/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
@@ -33,6 +33,9 @@
     <None Include="..\README.md" Link="README.md" />
     <PackageReference Include="APIMatic.Core" Version= "[0.4.10, 0.5.0)" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+        <_Parameter1>Aviationstack.Tests</_Parameter1>
+    </AssemblyAttribute>
     <None Include="..\README.md" Pack="true" PackagePath="\"/>
     <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
   </ItemGroup>
